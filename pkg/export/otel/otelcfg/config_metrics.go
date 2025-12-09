@@ -128,6 +128,10 @@ func (m *MetricsConfig) EndpointEnabled() bool {
 	return ep != ""
 }
 
+func (m *MetricsConfig) AnyInstrumentations() bool {
+	return len(m.Instrumentations) > 0
+}
+
 func (m *MetricsConfig) AnySpanMetricsEnabled() bool {
 	return m.SpanMetricsEnabled() || m.SpanMetricsSizesEnabled() || m.ServiceGraphMetricsEnabled()
 }

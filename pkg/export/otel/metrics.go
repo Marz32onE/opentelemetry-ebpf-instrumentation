@@ -161,7 +161,7 @@ func ReportMetrics(
 	processEventCh *msg.Queue[exec.ProcessEvent],
 ) swarm.InstanceFunc {
 	return func(ctx context.Context) (swarm.RunFunc, error) {
-		if !cfg.Enabled() {
+		if !cfg.Enabled() || (!cfg.AnySpanMetricsEnabled() && (!cfg.AnyInstrumentations() || (!cfg.OTelMetricsEnabled() && cfg.NetworkMetricsEnabled()))) {
 			return swarm.EmptyRunFunc()
 		}
 		otelcfg.SetupInternalOTELSDKLogger(cfg.SDKLogLevel)
