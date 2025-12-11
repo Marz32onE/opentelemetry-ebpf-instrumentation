@@ -335,10 +335,10 @@ func (r *PeriodicReader) Shutdown(ctx context.Context) error {
 			r.rmPool.Put(m)
 		}
 
-		sErr := r.exporter.Shutdown(ctx)
-		if err == nil || errors.Is(err, ErrReaderShutdown) {
-			err = sErr
-		}
+		// sErr := r.exporter.Shutdown(ctx)
+		// if err == nil || errors.Is(err, ErrReaderShutdown) {
+		// 	err = sErr
+		// }
 
 		r.mu.Lock()
 		defer r.mu.Unlock()
